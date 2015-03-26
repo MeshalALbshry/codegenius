@@ -8,7 +8,7 @@
   <style type="text/css">
     body { font-size: 1em; }
     table { table-layout: fixed; }
-    td { border: 1px solid; width: 150px; height: 150px; }
+    td { border: 1px solid; width: 250px; height: 250px; }
     .start { background-color: lime; }
     .end { background-color: magenta; }
     .drawn { background-color: cyan;}
@@ -61,7 +61,7 @@
       
       $buttonBresenham.click(function(){
         // bresendraw!
-        bresenDraw(0,0,3,3);
+        bresenDraw(0,0,2,2);
       });
       
       var draw = function(x, y){
@@ -71,27 +71,41 @@
         $cellToDraw.removeClass('drawn').addClass('bresendrawn');
       };
       
-      var bresenDraw = function(x0,y0,x1,y1){
-        var dx = x1 - x0;
-        var dy = y1 - y0;
-        var diff = 2*dy - dx;
-        var y = y0;
+var bresenDraw = function(x0,y0,x1,y1){
+    if (x0 == x1 && y0 == y1) {
+    draw(x0, y0);
+    return;
+}
+
+var dx = x1 - x0; 
+var sx = (dx < 0) ? -1 : 1;
+var dy = y1 - y0; 
+var sy = (dy < 0) ? -1 : 1;
+
+if (Math.abs(dy) < Math.abs(dx))
+{    
+    var m = dy / dx;
+    var b = y0 - m * x0;
     
-        draw(x0, y0);
+    while (x0 != x1)
+    {
+        draw(x0, parseInt(Math.round(m*x0 + b)));
+        x0 += sx;
+    }
+} 
+else 
+{
+    var m = dx / dy;
+    var b = x0 - m * y0;
     
-        for ( var x = x0 + 1; x <= x1; x++ ) {
-          if ( diff > 0 ) {
-            y++;
-            draw(x, y);
-            diff = diff + (2*dy - 2*dx);
-          }
-          else {
-            draw(x, y);
-            diff = diff + 2*dy;
-          }
-        }
-      };
-    })()
+    while (y0 != y1)
+    {
+        draw(parseInt(Math.round(m*y0 + b)), y0);
+        y0 += sy;
+    }    
+}
+  draw(x1,y1);
+  };    })()
   </script>
 
 </body>
