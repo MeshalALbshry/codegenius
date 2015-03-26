@@ -8,7 +8,7 @@
   <style type="text/css">
     body { font-size: 1em; }
     table { table-layout: fixed; }
-    td { border: 1px solid; width: 50px; height: 50px; }
+    td { border: 1px solid; width: 150px; height: 150px; }
     .start { background-color: lime; }
     .end { background-color: magenta; }
     .drawn { background-color: cyan;}
@@ -18,94 +18,21 @@
 
 <body>  
   
-  <h1>HOW GOOD ARE YOU AT DRAWING STRAIGHT LINES, SIMPLE HUMAN?</h1>
-  
-  <p><em>click the squares to draw from the lime square to the magenta square. then click the Bresenham button to see how good you are</em></p>
-  
   <button id="bresenham">draw Bresenham's line</button>
   <button id="clear">start over</button>
   
   <table>
     <tr>
-      <td class="start"> </td>
-      <td> </td>    
+      <td class="start"> </td> 
       <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>
+      <td> </td> 
     </tr>  
     <tr>
-      <td> </td>
       <td> </td>    
       <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>
+      <td> </td>   
     </tr>  
-    <tr>
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>
-    </tr>  
-    <tr>
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>
-    </tr>  
-    <tr>
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>
-    </tr>  
-    <tr>
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>
-    </tr>  
-    <tr>
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
-      <td> </td>    
-      <td> </td>
+    <tr>    
       <td> </td>    
       <td> </td>
       <td class="end"> </td>
@@ -134,16 +61,7 @@
       
       $buttonBresenham.click(function(){
         // bresendraw!
-        bresenDraw(0,0,10,7);
-        
-        // alert user of their wrongdoing
-        var $wrong = $('.drawn');
-        if ( $wrong.length ) {
-          alert('aaah you were off by ' + $wrong.length + '!');
-        }
-        else {
-          alert('wowowow you are a good line drawer!');
-        }
+        bresenDraw(0,0,3,3);
       });
       
       var draw = function(x, y){

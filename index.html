@@ -52,16 +52,21 @@
     /*  Custom CSS to make the presentation pretty. */
     body { font-family: helvetica; font-size: 3em; text-transform: uppercase; }
     h2 { margin: .3em 0; }
-    img { max-width: 100%; max-height: 300px; }
+    img { max-width: 100%; max-height: 100%; }
     #navigation, #counter { display: none; }
     li { font-size: .8em; }
+    a { color: magenta; text-decoration: none; }
+    pre { text-transform: none; font-size: .5em; }
   </style>
+  
+  <link rel="stylesheet" type="text/css" href="libs/prism.css" />
   
   <!-- jQuery (required for slides to work) -->
   <script type="text/javascript" src="libs/jquery.min.js"></script>
   
-  <!-- jQuery bbq (from some rando cdn lol ~*live dangerously*~) -->
   <script type="text/javascript" src="libs/jquery.ba-bbq.min.js"></script>
+
+  <script type="text/javascript" src="libs/prism.js"></script>
   
   <script type="text/javascript">
     jQuery(document).ready(function($){
@@ -268,13 +273,13 @@
   
   <div>
     <!-- bocoup -->
-    <img src="assets/bocoup.png" />
+    <img src="assets/bocoup.png" height="400px" />
     <p>bocoup</p>
   </div>
   
   <div>
     <!-- make8bitart -->
-    <img src="assets/bocoup-8bit.png" />
+    <img src="assets/bocoup-8bit.png" height="400px" />
     <p>make8bitart.com</p>
   </div>
   
@@ -283,11 +288,11 @@
   </div>
   
   <div>
-    <img src="assets/line-freehand.png" />
+    <img src="assets/line-freehand.jpg" />
   </div>
   
   <div>
-    <img src="assets/line-freehand-ruler.png" />
+    <img src="assets/line-freehand-ruler.jpg" />
   </div>
 
   <div>
@@ -295,11 +300,11 @@
   </div>
   
   <div>
-    <img src="assets/line-ruler.png" />
+    <img src="assets/line-ruler.jpg" />
   </div>
   
   <div>
-    <img src="assets/line-ruler-zoomed.png" />
+    <img src="assets/line-ruler-cheat.png" />
   </div>
   
   <div>
@@ -320,11 +325,15 @@
   </div>
 
   <div>
-    <img src="assets/line-graphing-calculator.png" />
+    <img src="assets/line-graphing-calculator.jpg" />
   </div>
   
   <div>
     <img src="assets/line-graphing-calculator-zoomed.png" />
+  </div>
+  
+  <div>
+    <img src="assets/line-graphing-calculator-zoomed2.png" />
   </div>
   
   <div>
@@ -344,11 +353,15 @@
   </div>
   
   <div>
-    <img src="assets/sad.png" />
+    <img src="assets/sad-1.jpg" />
   </div>
   
   <div>
-    <img src="assets/sad-not.png" />
+    <img src="assets/sad-2.jpg" />
+  </div>
+  
+  <div>
+    <img src="assets/sad-3.jpg" />
   </div>
   
   <div>
@@ -356,19 +369,74 @@
   </div>
   
   <div>
+    <img src="assets/happy-1.jpg" />
+  </div>
+  
+  <div>
+    <img src="assets/happy-2.jpg" />
+  </div>
+  
+  <div>
+    <img src="assets/happy-3.jpg" />
+  </div>
+
+  <div>
     <h2>✨bresenham's line algorithm✨</h2>
   </div>
   
   <div>
-    [[pseudo code]]
+    <h2>✨bresenham's line algorithm✨</h2>
+    ~*oversimplified integer edition*~
   </div>
   
   <div>
-    [[illustration]]
+    <pre><code>
+ bresenDraw(x0,y0,x1,y1)
+  dx = x1-x0
+  dy = y1-y0
+  diff = 2*dy - dx
+  y = y0
+
+  draw(x0,y0)
+
+  for x from x0+1 to x1
+    if diff > 0
+      y++
+      draw(x,y)
+      diff = diff + (2*dy - 2*dx)
+    else
+      draw(x,y)
+      diff = diff + 2*dy
+    </code></pre>
   </div>
   
   <div>
-    [[javascript code]]
+    🎷🐎 <a href="demo.html" target="_blank">demo</a> 🎷🐈
+  </div>
+  
+  <div>
+    <pre><code class="language-javascript">
+var bresenDraw = function(x0,y0,x1,y1){
+  var dx = x1 - x0;
+  var dy = y1 - y0;
+  var diff = 2*dy - dx;
+  var y = y0;
+
+  draw(x0, y0);
+
+  for ( var x = x0 + 1; x <= x1; x++ ) {
+    if ( diff > 0 ) {
+      y++;
+      draw(x, y);
+      diff = diff + (2*dy - 2*dx);
+    }
+    else {
+      draw(x, y);
+      diff = diff + 2*dy;
+    }
+  }
+};
+    </code></pre>
   </div>
   
   <div>
@@ -392,7 +460,7 @@
   </div>
   
   <div>
-    <h2>how good are you at drawing straight lines, simple human?</h2>
+    <h2><a href="game.html" target="_blank">how good are you at drawing straight lines, simple human?</a></h2>
   </div>
   
   <div>

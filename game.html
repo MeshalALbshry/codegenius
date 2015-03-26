@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  
+  <title>are you good at drawing straight lines?</title>
+  
+  <style type="text/css">
+    body { font-size: 1em; }
+    table { table-layout: fixed; }
+    td { border: 1px solid; width: 50px; height: 50px; }
+    .start { background-color: lime; }
+    .end { background-color: magenta; }
+    .drawn { background-color: cyan;}
+    .bresendrawn { background-color: orange; }
+  </style>
+</head>
+
+<body>  
+  
+  <h1>HOW GOOD ARE YOU AT DRAWING STRAIGHT LINES, SIMPLE HUMAN?</h1>
+  
+  <p><em>click the squares to draw from the lime square to the magenta square. then click the Bresenham button to see how good you are</em></p>
+  
+  <button id="bresenham">draw Bresenham's line</button>
+  <button id="clear">start over</button>
+  
+  <table>
+    <tr>
+      <td class="start"> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>
+    </tr>  
+    <tr>
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>
+    </tr>  
+    <tr>
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>
+    </tr>  
+    <tr>
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>
+    </tr>  
+    <tr>
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>
+    </tr>  
+    <tr>
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>
+    </tr>  
+    <tr>
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td> </td>    
+      <td> </td>
+      <td class="end"> </td>
+    </tr> 
+  </table>
+
+  <!-- jQuery (required for slides to work) -->
+  <script type="text/javascript" src="libs/jquery.min.js"></script>
+  
+  <script type="text/javascript">
+    (function(){
+            var $td = $('td');
+      var $buttonClear = $('#clear');
+      var $buttonBresenham = $('#bresenham');
+      
+      // click cell to draw
+      $td.click(function(){
+        $(this).toggleClass('drawn');
+      });
+      
+      // clear button
+      $buttonClear.click(function(){
+        $td.removeClass('drawn');
+        $td.removeClass('bresendrawn');
+      });
+      
+      $buttonBresenham.click(function(){
+        // bresendraw!
+        bresenDraw(0,0,10,7);
+        
+        // alert user of their wrongdoing
+        var $wrong = $('.drawn');
+        if ( $wrong.length ) {
+          alert('aaah you were off by ' + $wrong.length + '!');
+        }
+        else {
+          alert('wowowow you are a good line drawer!');
+        }
+      });
+      
+      var draw = function(x, y){
+        var $trToDraw = $('tr').eq(y);
+        var $cellToDraw = $trToDraw.find('td').eq(x);
+        
+        $cellToDraw.removeClass('drawn').addClass('bresendrawn');
+      };
+      
+      var bresenDraw = function(x0,y0,x1,y1){
+        var dx = x1 - x0;
+        var dy = y1 - y0;
+        var diff = 2*dy - dx;
+        var y = y0;
+    
+        draw(x0, y0);
+    
+        for ( var x = x0 + 1; x <= x1; x++ ) {
+          if ( diff > 0 ) {
+            y++;
+            draw(x, y);
+            diff = diff + (2*dy - 2*dx);
+          }
+          else {
+            draw(x, y);
+            diff = diff + 2*dy;
+          }
+        }
+      };
+    })()
+  </script>
+
+</body>
+</html>
